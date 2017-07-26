@@ -1,6 +1,6 @@
 # encoding: utf-8
 source 'https://rubygems.org'
-
+jruby "1.7.26"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'

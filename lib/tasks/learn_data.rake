@@ -87,12 +87,14 @@ EOB
         result = {diff: full_diff_all/test_num.to_f, max_traning_count: max_traning_count, learning_rate: learning_rate}
         puts result
         results << result
+        puts results
       end
     end
-    results.sort_by!{|a| a[:diff]}
     puts ""
     puts results
-  end
+    results.sort_by!{|a| a[:diff]}
+
+    end
 
 
 end

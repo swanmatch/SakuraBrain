@@ -41,7 +41,7 @@ module CustomLogger
         )
         outputter = Log4r::DateFileOutputter.new(
           "file",
-          dirname: File.join("./", "log", Rails.env),
+          dirname: Rails.root.join("log", Rails.env),
           filename: 'sakura_brain.log',
           date_pattern: "%Y%m%d",
 #          level: if Rails.env.production? then Log4r::INFO else Log4r::DEBUG end,

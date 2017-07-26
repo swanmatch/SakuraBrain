@@ -1,0 +1,25 @@
+<%%-
+only_show ||= false
+url =
+  if @<%= singular_table_name %>.new_record?
+    <%= [controller_class_path, table_name].flatten.compact.join("_") %>_path
+  else
+    <%= [controller_class_path, singular_table_name].flatten.compact.join("_")%>_path(@<%= singular_table_name %>)
+  end
+-%>
+<%%= simple_form_for(@<%= singular_table_name %>, url: loose_hashed_url(url), html: {class: 'well'}) do |f| %>
+  <%%= f.error_notification %>
+
+  <div class="form-inputs">
+  <%- attributes.each do |attribute| -%>
+    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, disabled: only_show %>
+  <%- end -%>
+    <%%= f.hidden_field :lock_version %>
+  </div>
+
+  <%%- unless only_show -%>
+  <div class="form-actions">
+    <%%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+  <%%- end -%>
+<%% end %>

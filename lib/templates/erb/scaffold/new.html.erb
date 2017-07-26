@@ -1,0 +1,7 @@
+<h1>New <%= singular_table_name.titleize %></h1>
+
+<%%= render 'form' %>
+
+<div class="text-center">
+  <%%= link_to 'Back', loose_hashed_url(<%= [controller_class_path, index_helper].flatten.compact.join("_") %>_path), class: "btn btn-default" %>
+</div>

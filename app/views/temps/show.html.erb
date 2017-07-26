@@ -1,0 +1,9 @@
+<h1>Show Temp</h1>
+<p id="notice"><%= notice %></p>
+
+<%= render "form", only_show: true %>
+
+<div class="text-center">
+  <%= link_to 'Back', loose_hashed_url(temps_path), class: 'btn btn-default' %> |
+  <%= link_to 'Edit', loose_hashed_url(edit_temp_path(@temp)), class: 'btn btn-primary' %>
+</div>

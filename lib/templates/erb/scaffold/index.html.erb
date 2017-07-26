@@ -1,0 +1,35 @@
+<p id="notice"><%%= notice %></p>
+
+<h1>Listing <%= plural_table_name.titleize %></h1>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <th><%= attribute.human_name %></th>
+<% end -%>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+        <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+          <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+          <td class="text-center"><%%= link_to 'Show', loose_hashed_url(<%= [controller_class_path, singular_table_name].flatten.compact.join("_") %>_path(<%= singular_table_name %>)), class: 'btn btn-success' %></td>
+          <td class="text-center"><%%= link_to 'Edit', loose_hashed_url(edit_<%= [controller_class_path, singular_table_name].flatten.compact.join("_") %>_path(<%= singular_table_name %>)), class: 'btn btn-primary' %></td>
+          <td class="text-center"><%%= link_to 'Destroy', loose_hashed_url(<%= [controller_class_path, singular_table_name].flatten.compact.join("_") %>_path(<%= singular_table_name %>)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        </tr>
+    <%% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div class="text-center">
+  <%%= link_to 'New <%= human_name %>', loose_hashed_url(new_<%= [controller_class_path, singular_table_name].flatten.compact.join("_") %>_path), class: "btn btn-info" %>
+</div>

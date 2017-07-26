@@ -1,0 +1,10 @@
+<h1>Editing Temp</h1>
+
+<%= render 'form' %>
+
+<div class="text-center">
+  <%= link_to 'Back', loose_hashed_url(temps_path), class: "btn btn-default" %> |
+  <%= link_to 'Show', loose_hashed_url(temp_path(@temp)), class: "btn btn-info" %> |
+  <%= link_to 'Destroy', loose_hashed_url(temp_path(@temp)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+</div>
+

@@ -1,0 +1,27 @@
+<%-
+only_show ||= false
+url =
+  if @temp.new_record?
+    temps_path
+  else
+    temp_path(@temp)
+  end
+-%>
+<%= simple_form_for(@temp, url: loose_hashed_url(url), html: {class: 'well'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :place, disabled: only_show %>
+    <%= f.input :temp_on, disabled: only_show %>
+    <%= f.input :average, disabled: only_show %>
+    <%= f.input :max, disabled: only_show %>
+    <%= f.input :min, disabled: only_show %>
+    <%= f.hidden_field :lock_version %>
+  </div>
+
+  <%- unless only_show -%>
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+  <%- end -%>
+<% end %>

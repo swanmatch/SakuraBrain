@@ -1,0 +1,10 @@
+<h1>Editing <%= singular_table_name.titleize %></h1>
+
+<%%= render 'form' %>
+
+<div class="text-center">
+  <%%= link_to 'Back', loose_hashed_url(<%= [controller_class_path, index_helper].flatten.compact.join("_") %>_path), class: "btn btn-default" %> |
+  <%%= link_to 'Show', loose_hashed_url(<%= [controller_class_path, singular_table_name].flatten.compact.join("_") %>_path(@<%= singular_table_name %>)), class: "btn btn-info" %> |
+  <%%= link_to 'Destroy', loose_hashed_url(<%= [controller_class_path, singular_table_name].flatten.compact.join("_") %>_path(@<%= singular_table_name %>)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+</div>
+

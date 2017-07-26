@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sakuras</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Place</th>
+        <th>Year</th>
+        <th>Open at</th>
+        <th>Full at</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @sakuras.each do |sakura| %>
+        <tr>
+          <td><%= sakura.place %></td>
+          <td><%= sakura.year %></td>
+          <td><%= sakura.open_at %></td>
+          <td><%= sakura.full_at %></td>
+          <td class="text-center"><%= link_to 'Show', loose_hashed_url(sakura_path(sakura)), class: 'btn btn-success' %></td>
+          <td class="text-center"><%= link_to 'Edit', loose_hashed_url(edit_sakura_path(sakura)), class: 'btn btn-primary' %></td>
+          <td class="text-center"><%= link_to 'Destroy', loose_hashed_url(sakura_path(sakura)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div class="text-center">
+  <%= link_to 'New Sakura', loose_hashed_url(new_sakura_path), class: "btn btn-info" %>
+</div>

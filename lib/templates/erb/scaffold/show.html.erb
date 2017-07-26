@@ -1,0 +1,9 @@
+<h1>Show <%= singular_table_name.titleize %></h1>
+<p id="notice"><%%= notice %></p>
+
+<%%= render "form", only_show: true %>
+
+<div class="text-center">
+  <%%= link_to 'Back', loose_hashed_url(<%= [controller_class_path, index_helper].flatten.compact.join("_") %>_path), class: 'btn btn-default' %> |
+  <%%= link_to 'Edit', loose_hashed_url(edit_<%= [controller_class_path, singular_table_name].flatten.compact.join("_") %>_path(@<%= singular_table_name %>)), class: 'btn btn-primary' %>
+</div>

@@ -1,0 +1,24 @@
+<%-
+only_show ||= false
+url =
+  if @place.new_record?
+    places_path
+  else
+    place_path(@place)
+  end
+-%>
+<%= simple_form_for(@place, url: loose_hashed_url(url), html: {class: 'well'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :cd, disabled: only_show %>
+    <%= f.input :name, disabled: only_show %>
+    <%= f.hidden_field :lock_version %>
+  </div>
+
+  <%- unless only_show -%>
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+  <%- end -%>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>Editing Sakura</h1>
+
+<%= render 'form' %>
+
+<div class="text-center">
+  <%= link_to 'Back', loose_hashed_url(sakuras_path), class: "btn btn-default" %> |
+  <%= link_to 'Show', loose_hashed_url(sakura_path(@sakura)), class: "btn btn-info" %> |
+  <%= link_to 'Destroy', loose_hashed_url(sakura_path(@sakura)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+</div>
+

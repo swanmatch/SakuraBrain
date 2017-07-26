@@ -1,0 +1,10 @@
+<h1>Editing Place</h1>
+
+<%= render 'form' %>
+
+<div class="text-center">
+  <%= link_to 'Back', loose_hashed_url(places_path), class: "btn btn-default" %> |
+  <%= link_to 'Show', loose_hashed_url(place_path(@place)), class: "btn btn-info" %> |
+  <%= link_to 'Destroy', loose_hashed_url(place_path(@place)), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %>
+</div>
+

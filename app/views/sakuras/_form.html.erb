@@ -1,0 +1,26 @@
+<%-
+only_show ||= false
+url =
+  if @sakura.new_record?
+    sakuras_path
+  else
+    sakura_path(@sakura)
+  end
+-%>
+<%= simple_form_for(@sakura, url: loose_hashed_url(url), html: {class: 'well'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :place, disabled: only_show %>
+    <%= f.input :year, disabled: only_show %>
+    <%= f.input :open_at, disabled: only_show %>
+    <%= f.input :full_at, disabled: only_show %>
+    <%= f.hidden_field :lock_version %>
+  </div>
+
+  <%- unless only_show -%>
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+  <%- end -%>
+<% end %>

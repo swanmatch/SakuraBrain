@@ -34,6 +34,12 @@ module CustomLogger
     include Singleton
     def initialize
       unless @logger
+        path =
+          if Rails.env.production?
+            "/tmp"
+          else
+            Rails.root.join("log", Rails.env)
+          end
         @logger = Log4r::Logger.new("SYSTEM")
         formatter = Log4r::PatternFormatter.new(
           pattern: "%d,%l,%h,%M",

@@ -1,7 +1,7 @@
 # encoding: utf-8
 source 'https://rubygems.org'
 #ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.27'
-ruby "2.2.2", :engine => "jruby", :engine_version => "9.0.0.0"
+ruby "2.2.3", :engine => "jruby", :engine_version => "9.0.0.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'

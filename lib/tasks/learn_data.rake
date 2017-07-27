@@ -61,10 +61,10 @@ EOB
 
   desc "最適な学習率を探す"
   task search: :environment do
-    nums = [100, 500, 1000, 2000, 3000]
-    lates = [0.01, 0.025, 0.05, 0.1, 0.2, 0.4]
+    nums = [3000, 5000]
+    lates = [0.0001, 0.0005, 0.001]
     training_input_set, training_supervisor_set = Sakura.laern_datas
-    results = []
+    results_list = []
     test_num = 1000
 
     nums.each do |max_traning_count|
@@ -84,15 +84,13 @@ EOB
           full_diff = results[0].yday - sakura.full_on
           full_diff_all += full_diff.abs
         end
-        result = {diff: full_diff_all/test_num.to_f, max_traning_count: max_traning_count, learning_rate: learning_rate}
-        puts result
-        results << result
-        puts results
+        results_list << {diff: full_diff_all/test_num.to_f, max_traning_count: max_traning_count, learning_rate: learning_rate}
+        puts results_list
       end
     end
+    results_list.sort_by!{|a| a[:diff]}
     puts ""
-    puts results
-    results.sort_by!{|a| a[:diff]}
+    puts results_list
 
     end
 

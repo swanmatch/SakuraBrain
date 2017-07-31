@@ -1,5 +1,6 @@
 # coding: utf-8
 
+#MODEL = [120*3, 120, 30, 1]
 MODEL = [120*3, 1]
 FILE = './weights/file.yml'
 
@@ -10,7 +11,7 @@ namespace :learn_data do
     max_traning_count = args.max_traning_count.to_i
     max_traning_count = 100 if max_traning_count == 0
     learning_rate = args.learning_rate.to_f
-    learning_rate = 0.4 if learning_rate == 0.0
+    learning_rate = 0.001 if learning_rate == 0.0
     training_input_set, training_supervisor_set = Sakura.laern_datas
 
     # ネットワーク作成

@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 #ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.27'
 #ruby '2.0.0', engine: "jruby", engine_version: "1.7.26"
-ruby '2.3.1"
+ruby "2.3.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'

@@ -24,6 +24,6 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: us-cdbr-iron-east-03
-  username: b54d55d1f5d9bf
+  database: dfrj15c2o34p58
+  username: qgipmyvunrqaca
   password: <%= ENV['DATABASE_PASSWORD'] %>

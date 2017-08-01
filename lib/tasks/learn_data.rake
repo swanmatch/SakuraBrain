@@ -1,7 +1,7 @@
 # coding: utf-8
 
 #MODEL = [120*3, 120, 30, 1]
-MODEL = [120*3, 1]
+MODEL = [120*3, 30, 1]
 FILE = './weights/file.yml'
 
 

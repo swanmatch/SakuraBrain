@@ -86,7 +86,6 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.7.0)
-    ffi (1.9.18)
     ffi (1.9.18-java)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -114,6 +113,7 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    libv8 (3.16.14.19)
     log4r (1.1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -179,6 +179,7 @@ GEM
     rdoc (4.3.0)
     record_with_operator (1.0.1)
       activerecord
+    ref (2.0.0)
     ruby_brain (0.1.4)
       mnist
     ryakuzu (0.2.6)
@@ -223,6 +224,9 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.8.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     therubyrhino (2.0.4)
       therubyrhino_jar (>= 1.7.3)
     therubyrhino_jar (1.7.6)
@@ -287,6 +291,7 @@ DEPENDENCIES
   seed_dump
   select2-rails
   simple_form
+  therubyracer
   therubyrhino
   turbolinks
   tzinfo-data

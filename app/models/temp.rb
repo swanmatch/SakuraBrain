@@ -2,10 +2,10 @@ class Temp < ActiveRecord::Base
   belongs_to :place
 
 #  def self.calc_min_max
-    all_temps = self.where("DATE_FORMAT(temp_on, '%m') IN ('01', '02', '03', '04', '05')").pluck(:average, :max, :min).flatten
-    MIN = all_temps.min
-    all_temps = all_temps.map{ |temp| temp - MIN }
-    MAX = all_temps.max
+#    all_temps = self.where("DATE_FORMAT(temp_on, '%m') IN ('01', '02', '03', '04', '05')").pluck(:average, :max, :min).flatten
+    MIN = self.minimum(:min)
+#    all_temps = all_temps.map{ |temp| temp - MIN }
+    MAX = self.maximum(:max)
 #  end
 #  calc_min_max
 

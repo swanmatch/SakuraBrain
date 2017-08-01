@@ -125,6 +125,7 @@ GEM
     minitest (5.10.2)
     mnist (0.1.0)
     multi_json (1.12.1)
+    mysql2 (0.3.21)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     nokogiri (1.8.0-java)
@@ -276,6 +277,7 @@ DEPENDENCIES
   kaminari (= 0.17.0)
   log4r
   mime-types (< 3)
+  mysql2 (~> 0.3.11)
   pg (~> 0.18.1)
   pry-doc
   pry-rails

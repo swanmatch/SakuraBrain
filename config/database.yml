@@ -23,6 +23,7 @@ test:
 
 production:
   <<: *default
+  adapter: postgres
   database: us-cdbr-iron-east-03
   username: b54d55d1f5d9bf
   password: <%= ENV['DATABASE_PASSWORD'] %>

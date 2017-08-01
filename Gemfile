@@ -1,13 +1,43 @@
 # encoding: utf-8
 source 'https://rubygems.org'
 #ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.27'
-ruby "2.2.3", :engine => "jruby", :engine_version => "9.0.5.0"
 #ruby '2.0.0', engine: "jruby", engine_version: "1.7.26"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 # Use jdbcmysql as the database for Active Record
-gem 'activerecord-jdbcmysql-adapter'
+if File.exist?(database_file)
+  database_config = YAML::load(ERB.new(IO.read(database_file)).result)
+  adapters = database_config.values.map {|c| c['adapter']}.compact.uniq
+  if adapters.any?
+    adapters.each do |adapter|
+      case adapter
+      when 'mysql2'
+        gem "mysql2", "~> 0.3.11", :platforms => [:mri, :mingw, :x64_mingw]
+        gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
+      when 'mysql'
+        gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
+      when /postgresql/
+        gem "pg", "~> 0.18.1", :platforms => [:mri, :mingw, :x64_mingw]
+        gem "activerecord-jdbcpostgresql-adapter", :platforms => :jruby
+      when /sqlite3/
+        gem "sqlite3", :platforms => [:mri, :mingw, :x64_mingw]
+        gem "jdbc-sqlite3", ">= 3.8.10.1", :platforms => :jruby
+        gem "activerecord-jdbcsqlite3-adapter", :platforms => :jruby
+      when /sqlserver/
+        gem "tiny_tds", "~> 0.6.2", :platforms => [:mri, :mingw, :x64_mingw]
+        gem "activerecord-sqlserver-adapter", :platforms => [:mri, :mingw, :x64_mingw]
+      else
+        warn("Unknown database adapter `#{adapter}` found in config/database.yml, use Gemfile.local to load your own database gems")
+      end
+    end
+  else
+    warn("No adapter found in config/database.yml, please configure it first")
+  end
+else
+  warn("Please configure your config/database.yml first")
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

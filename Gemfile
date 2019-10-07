@@ -2,10 +2,10 @@
 source 'https://rubygems.org'
 #ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.27'
 #ruby '2.0.0', engine: "jruby", engine_version: "1.7.26"
-ruby "2.3.1"
+#ruby "2.6.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.11.1'
 # Use jdbcmysql as the database for Active Record
 # Include database gems for the adapters found in the database
 # configuration file

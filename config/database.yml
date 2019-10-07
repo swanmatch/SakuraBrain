@@ -6,7 +6,7 @@
 default: &default
   adapter: mysql2
   pool: 5
-  host: localhost
+  host: 127.0.0.1
   password: admin
   username: root
 

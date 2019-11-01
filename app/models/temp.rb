@@ -2,16 +2,18 @@ class Temp < ActiveRecord::Base
   belongs_to :place
 
 #  def self.calc_min_max
-#    all_temps = self.where("DATE_FORMAT(temp_on, '%m') IN ('01', '02', '03', '04', '05')").pluck(:average, :max, :min).flatten
-    MIN = self.minimum(:min)
+#    all_temps = self.where("DATE_FORMAT(temp_on, '%m') IN ('01', '02', '03', '12')").pluck(:average, :max, :min).flatten
+#    MIN = all_temps.minimum(:min)
 #    all_temps = all_temps.map{ |temp| temp - MIN }
-    MAX = self.maximum(:max)
+#    MAX = all_temps.maximum(:max)
 #  end
 #  calc_min_max
+  MIN = self.minimum(:min)
+  MAX = self.maximum(:max)
 
   def self.find_by_place_and_year(place_id, year)
-    str_date = Date.parse("#{year}-01-01")
-    end_date = Date.parse("#{year}-05-31")
+    str_date = Date.parse("#{year-1}-12-01")
+    end_date = Date.parse("#{year}-03-31")
     self.where(
       place_id: place_id,
       temp_on: str_date..end_date

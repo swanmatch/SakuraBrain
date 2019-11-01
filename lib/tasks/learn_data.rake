@@ -1,17 +1,18 @@
 # coding: utf-8
 
-#MODEL = [120*3, 120, 30, 1]
-MODEL = [120*3, 1]
-FILE = './weights/file.yml'
+MODEL = [120*3, 120, 30, 1]
+#MODEL = [120*3, 1]
+FILE = "./weights/#{MODEL.join("_")}.yml"
+#FILE = "./weights/file.yml"
 
 
 namespace :brain do
   desc "学習データの作成"
   task :learn, [:max_traning_count, :learning_rate] => :environment do |task, args|
     max_traning_count = args.max_traning_count.to_i
-    max_traning_count = 100 if max_traning_count == 0
+    max_traning_count = 1000 if max_traning_count == 0
     learning_rate = args.learning_rate.to_f
-    learning_rate = 0.001 if learning_rate == 0.0
+    learning_rate = 0.01 if learning_rate == 0.0
     training_input_set, training_supervisor_set = Sakura.laern_datas
 
     # ネットワーク作成
@@ -42,10 +43,10 @@ namespace :brain do
       mid_results = a_network.get_forward_outputs reason
       results = Sakura.new_from_results mid_results, sakura.year
 #      open_diff = (results[0] - sakura.open_on).to_i
-#      full_diff = (results[1] - sakura.full_on).to_i
-      full_diff = results[0].yday - sakura.full_on
+      full_diff = (results[0] - sakura.full_on_date).to_i
+#      binding.pry
 #      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}開花日-正解:#{sakura.open_on.strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")}  満開日-正解:#{sakura.full_on.strftime("%m/%d")} 予測:#{results[1].strftime("%m/%d")}"
-      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}満開日-正解:#{(Date.parse("2017/01/01") + sakura.full_on.days).strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")}"
+      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}満開日-正解:#{sakura.full_on_date.strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")} 差:#{full_diff}"
 #      open_correct += 1 if open_diff == 0
       full_correct += 1 if full_diff == 0
 #      open_diff_all += open_diff.abs

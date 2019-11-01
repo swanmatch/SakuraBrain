@@ -9,6 +9,7 @@
 
 require 'net/http'
 require 'uri'
+require 'csv'
 
 # Places
 puts "start insert to place datas!"
@@ -59,9 +60,9 @@ mankai.each do |mankai_row|
 end
 
 puts "start download to temperature datas!"
-SESSION_ID = 'soucn5h6hovkoqpt85i0ji7pl1'
+SESSION_ID = 'sov27o8aecot691auvba7g2d55'
 # get files
-Sakura.includes(:place).references(:place).limit(1).all.each do |sakura|
+Sakura.includes(:place).references(:place).all.each do |sakura|
   place_cd = sakura.place.try :cd
   year = sakura.year
   file = "./db/datas/temp/#{place_cd}_#{year}.csv"
@@ -75,7 +76,7 @@ Sakura.includes(:place).references(:place).limit(1).all.each do |sakura|
       "aggrgPeriod" => "1",
       "elementNumList" => "[[\"201\",\"\"],[\"202\",\"\"],[\"203\",\"\"]]",
       "interAnnualFlag" => "1",
-      "ymdList" => "[\"#{year}\",\"#{year}\",\"1\",\"5\",\"1\",\"1\"]",
+      "ymdList" => "[\"#{year-1}\",\"#{year}\",\"12\",\"3\",\"1\",\"31\"]",
       "optionNumList" => "[]",
       "downloadFlag" => "true",
       "rmkFlag" => "0",
@@ -99,14 +100,16 @@ Sakura.includes(:place).references(:place).limit(1).all.each do |sakura|
       http.request(request)
     end
 
-# response.code
+    puts response.code if response.code != '200'
     File.open(file, "wb") do |f|
       f.puts response.body
     end
 
-#    sleep 1
+    sleep 1
 
     nil
+  else
+    puts sakura.attributes
   end
 end
 

@@ -24,10 +24,14 @@ class Sakura < ActiveRecord::Base
     min = Sakura.minimum(:full_on)
     max = Sakura.maximum(:full_on)
     diff = max - min
-    new_years_day = Date.parse("#{year}-01-01") + Sakura.minimum(:full_on)
+    new_years_day = Date.parse("#{year-1}-12-31") + Sakura.minimum(:full_on)
     result_sets.map do |f|
       new_years_day + (f * diff).to_i.days
     end
+  end
+
+  def full_on_date
+    Date.parse("#{year-1}-12-31") + self.full_on
   end
 
 #  def from_new_years_day(cols = [:open_on, :full_on])

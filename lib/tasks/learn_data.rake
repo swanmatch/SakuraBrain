@@ -42,9 +42,9 @@ namespace :brain do
       mid_results = a_network.get_forward_outputs reason
       results = Sakura.new_from_results mid_results, sakura.year
 #      open_diff = (results[0] - sakura.open_on).to_i
-      full_diff = results[0].yday - sakura.full_on
+      full_diff = (results[0] - sakura.full_on_date).to_i
 #      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}開花日-正解:#{sakura.open_on.strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")}  満開日-正解:#{sakura.full_on.strftime("%m/%d")} 予測:#{results[1].strftime("%m/%d")}"
-      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}満開日-正解:#{(Date.parse("2017/12/31") + sakura.full_on.days).strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")} 差:#{full_diff}"
+      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}満開日-正解:#{sakura.full_on_date.strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")} 差:#{full_diff}"
 #      open_correct += 1 if open_diff == 0
       full_correct += 1 if full_diff == 0
 #      open_diff_all += open_diff.abs

@@ -1,17 +1,17 @@
 # coding: utf-8
 
-#MODEL = [120*3, 120, 30, 1]
-MODEL = [120*3, 1]
-FILE = './weights/file.yml'
+MODEL = [120*3, 120, 30, 1]
+#MODEL = [120*3, 1]
+FILE = "./weights/#{MODEL.join("_")}.yml"
 
 
 namespace :brain do
   desc "学習データの作成"
   task :learn, [:max_traning_count, :learning_rate] => :environment do |task, args|
     max_traning_count = args.max_traning_count.to_i
-    max_traning_count = 100 if max_traning_count == 0
+    max_traning_count = 1000 if max_traning_count == 0
     learning_rate = args.learning_rate.to_f
-    learning_rate = 0.001 if learning_rate == 0.0
+    learning_rate = 0.01 if learning_rate == 0.0
     training_input_set, training_supervisor_set = Sakura.laern_datas
 
     # ネットワーク作成
@@ -42,10 +42,9 @@ namespace :brain do
       mid_results = a_network.get_forward_outputs reason
       results = Sakura.new_from_results mid_results, sakura.year
 #      open_diff = (results[0] - sakura.open_on).to_i
-#      full_diff = (results[1] - sakura.full_on).to_i
       full_diff = results[0].yday - sakura.full_on
 #      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}開花日-正解:#{sakura.open_on.strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")}  満開日-正解:#{sakura.full_on.strftime("%m/%d")} 予測:#{results[1].strftime("%m/%d")}"
-      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}満開日-正解:#{(Date.parse("2017/01/01") + sakura.full_on.days).strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")}"
+      puts "#{sakura.year}年 #{sakura.place.try(:name).to_s.ljust(4, '　')}満開日-正解:#{(Date.parse("2017/12/31") + sakura.full_on.days).strftime("%m/%d")} 予測:#{results[0].strftime("%m/%d")} 差:#{full_diff}"
 #      open_correct += 1 if open_diff == 0
       full_correct += 1 if full_diff == 0
 #      open_diff_all += open_diff.abs
@@ -58,6 +57,21 @@ namespace :brain do
 満開平均誤差： #{full_diff_all / test_num.to_f}日
 *************************************
 EOB
+  end
+
+  desc 'csvから開花日予測'
+  task :estimate, [:file_name] => :environment do |task, args|
+    require 'csv'
+
+    # initialize
+    a_network = RubyBrain::Network.new MODEL
+    a_network.init_network
+    a_network.load_weights_from_yaml_file(FILE)
+
+    # 予測
+    reason = Temp.reason_from_csv(args.file_name)
+    mid_results = a_network.get_forward_outputs reason[0..360]
+    puts Sakura.new_from_results mid_results
   end
 
   desc "最適な学習率を探す"

@@ -20,7 +20,7 @@ class Sakura < ActiveRecord::Base
     [reasons, results]
   end
 
-  def self.new_from_results(result_sets, year = 2017)
+  def self.new_from_results(result_sets, year = Date.today.year)
     min = Sakura.minimum(:full_on)
     max = Sakura.maximum(:full_on)
     diff = max - min

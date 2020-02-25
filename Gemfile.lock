@@ -70,7 +70,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
-    crass (1.0.4)
+    crass (1.0.6)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     enum_help (0.0.15)
@@ -107,7 +107,7 @@ GEM
       activesupport (>= 3.0.0)
     libv8 (3.16.14.19)
     log4r (1.1.10)
-    loofah (2.3.0)
+    loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)

@@ -132,7 +132,7 @@ gem "select2-rails"
 #gem 'bootstrap-datepicker-rails', '1.1.1.11'
 gem 'jquery-ui-rails'
 
-gem 'kaminari', '0.17.0'
+gem 'kaminari', '1.2.1'
 
 gem 'seed_dump'
 

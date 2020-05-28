@@ -30,14 +30,6 @@ GEM
       activemodel (= 4.2.11.1)
       activesupport (= 4.2.11.1)
       arel (~> 6.0)
-    activerecord-jdbc-adapter (50.0)
-      activerecord (>= 2.2)
-    activerecord-jdbcmysql-adapter (50.0)
-      activerecord-jdbc-adapter (~> 50.0)
-      jdbc-mysql (~> 5.1.36)
-    activerecord-jdbcpostgresql-adapter (50.0)
-      activerecord-jdbc-adapter (~> 50.0)
-      jdbc-postgres (>= 9.4, < 43)
     activerecord-session_store (1.1.3)
       actionpack (>= 4.0)
       activerecord (>= 4.0)
@@ -102,8 +94,6 @@ GEM
     ice_nine (0.11.2)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-    jdbc-mysql (5.1.47)
-    jdbc-postgres (42.2.6)
     jquery-rails (4.3.5)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -112,12 +102,21 @@ GEM
       railties (>= 3.2.16)
     json (1.8.6)
     json (1.8.6-java)
-    kaminari (0.17.0)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
+    kaminari (1.2.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.1)
+      kaminari-activerecord (= 1.2.1)
+      kaminari-core (= 1.2.1)
+    kaminari-actionview (1.2.1)
+      actionview
+      kaminari-core (= 1.2.1)
+    kaminari-activerecord (1.2.1)
+      activerecord
+      kaminari-core (= 1.2.1)
+    kaminari-core (1.2.1)
     libv8 (3.16.14.19)
     log4r (1.1.10)
-    loofah (2.4.0)
+    loofah (2.5.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -126,16 +125,14 @@ GEM
     mime-types (2.99.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.0)
+    minitest (5.14.1)
     mnist (0.1.0)
     multi_json (1.14.1)
-    mysql2 (0.3.21)
     nio4r (2.5.2)
     nio4r (2.5.2-java)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.9-java)
-    pg (0.18.4)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -252,7 +249,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     tzinfo-data (1.2019.3)
       tzinfo (>= 1.0.0)
@@ -274,8 +271,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-jdbcmysql-adapter
-  activerecord-jdbcpostgresql-adapter
   activerecord-session_store
   better_errors
   bootstrap-sass
@@ -288,11 +283,9 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
-  kaminari (= 0.17.0)
+  kaminari (= 1.2.1)
   log4r
   mime-types (< 3)
-  mysql2 (~> 0.3.11)
-  pg (~> 0.18.1)
   pry-doc
   pry-rails
   puma
